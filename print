@@ -1,0 +1,27 @@
+#!/usr/local/bin/python3
+import datetime
+from pyaxidraw import axidraw
+ad = axidraw.AxiDraw()
+
+files = [
+    'corpses/luke.svg',
+    'corpses/hind.svg',
+    'corpses/murilo.svg',
+
+    'corpses/murilo1.svg',
+    'corpses/murilo2.svg',
+]
+
+for i in range(0, 3):
+    ad.interactive()
+    ad.connect()
+    if i != 0: # Don't translate if it's the first one
+        ad.moveto(0,2.0833333333333335)
+    ad.plot_setup(files[i])
+    ad.options.units = 2
+    ad.options.model = 2
+    ad.options.pen_pos_down = 0
+    ad.options.pen_pos_up = 50
+    ad.update()
+    ad.plot_run()
+    ad.disconnect()
